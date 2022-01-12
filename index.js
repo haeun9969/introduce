@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-const PORT = process.env.PORT || 3000;
 
 var router = require('./router/main')(app);
 
@@ -11,11 +10,14 @@ app.engine('html', require('ejs').renderFile);
 
 app.use(express.static('public'));
 
-//server setting
-var server = app.listen(3000, function(){
-  console.log("Express server has started on port 3000")
-  app.use(express.static('public'));
+var port = process.env.PORT || 3000;
+
+app.listen(port, "0.0.0.0", function() {
+console.log("Listening on Port 3000");
+app.use(express.static('public'));
 });
+
+
 
 
 
